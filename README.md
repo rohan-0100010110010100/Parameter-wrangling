@@ -30,6 +30,8 @@ rohan@hackerspace:-$ ./a.out
 (0.99)^100: 0.366032  
 (0.99)^100: 0.000000  
 
+Now I'm using gef or GDB Enhanced Features for debugging the Double-Int.c, so I did  disassembly on the main:  
+
 gef➤  disas main  
 Dump of assembler code for function main:  
    0x0000000000400680 <+0>:	push   rbp  
