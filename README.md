@@ -6,9 +6,9 @@ The code in Double-Int.c is never supossed to define the function IntPowerOfDoub
 
 ## Output Of Double-Int.c
 
-rohan@hackerspace:~$ clang-3.5 -lm punny.c \s
-rohan@hackerspace:~$ ./a.out\s
-(0.99)^100: 0.366032 \s
-(0.99)^100: 0.366032 \s
+rohan@hackerspace:~$ clang-3.5 -lm punny.c \s\s
+rohan@hackerspace:~$ ./a.out\s\s
+(0.99)^100: 0.366032 \s\s
+(0.99)^100: 0.366032 \s\s
 
 
