@@ -2,6 +2,13 @@
 
 Analysis of SSE &amp; demonstration to show the ill-effect of function parameters wrangling/re-arrangement.
 
+The result of this experiment is based upon the Platform ABI and artchitecture , the following are the requirement for this experiment:
+
+# Requirments 
+
+* AMD64 ABI 
+* Linux , 64 bit
+
 The code in Double-Int.c is never supossed to define the function IntPowerOfDouble — because there is no function IntPowerOfDouble in reality. It's a function pointer that points to DoubleToTheInt, but with parameters that infer that it requires its integer arguments to come before its double argument.
 
 **Output Of Double-Int.c**
