@@ -6,7 +6,7 @@ The code in Double-Int.c is never supossed to define the function IntPowerOfDoub
 
 **Output Of Double-Int.c**
 
-rohan@hackerspace:-$ clang-3.5 -lm punny.c  
+rohan@hackerspace:-$ clang-3.5 -lm Double-Int.c
 rohan@hackerspace:-$ ./a.out  
 (0.99)^100: 0.366032  
 (0.99)^100: 0.366032  
@@ -16,7 +16,7 @@ Now try changing all the int arguments to float — you'll see that FloatPowerOf
 
 **Output Of Double-Float.c**
 
-rohan@hackerspace:-$ clang-3.5 -lm tits.c  
+rohan@hackerspace:-$ clang-3.5 -lm Double-Float.c
 rohan@hackerspace:-$ ./a.out  
 (0.99)^100: 0.366032  
 (0.99)^100: 0.000000  
