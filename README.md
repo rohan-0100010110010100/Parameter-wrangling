@@ -29,3 +29,32 @@ rohan@hackerspace:-$ clang-3.5 -lm Double-Float.c
 rohan@hackerspace:-$ ./a.out  
 (0.99)^100: 0.366032  
 (0.99)^100: 0.000000  
+
+gef➤  disas main  
+Dump of assembler code for function main:  
+   0x0000000000400680 <+0>:	push   rbp  
+   0x0000000000400681 <+1>:	mov    rbp,rsp  
+   0x0000000000400684 <+4>:	sub    rsp,0x10  
+   0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778  
+   0x0000000000400691 <+17>:	mov    edi,0x64  
+   0x0000000000400696 <+22>:	movabs rax,0x400650  
+   0x00000000004006a0 <+32>:	mov    QWORD PTR [rbp-0x8],rax  
+   0x00000000004006a4 <+36>:	call   0x400650 <DoubleToTheInt>  
+   0x00000000004006a9 <+41>:	movabs rdi,0x400780  
+   0x00000000004006b3 <+51>:	mov    al,0x1  
+   0x00000000004006b5 <+53>:	call   0x400510 <printf@plt>  
+   0x00000000004006ba <+58>:	mov    edi,0x64  
+   0x00000000004006bf <+63>:	movsd  xmm0,QWORD PTR ds:0x400778  
+   0x00000000004006c8 <+72>:	mov    DWORD PTR [rbp-0xc],eax  
+   0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]  
+   0x00000000004006ce <+78>:	movabs rdi,0x400780  
+   0x00000000004006d8 <+88>:	mov    al,0x1  
+   0x00000000004006da <+90>:	call   0x400510 <printf@plt>  
+   0x00000000004006df <+95>:	mov    ecx,0x0  
+   0x00000000004006e4 <+100>:	mov    DWORD PTR [rbp-0x10],eax  
+   0x00000000004006e7 <+103>:	mov    eax,ecx  
+   0x00000000004006e9 <+105>:	add    rsp,0x10  
+   0x00000000004006ed <+109>:	pop    rbp  
+   0x00000000004006ee <+110>:	ret      
+End of assembler dump.  
+
