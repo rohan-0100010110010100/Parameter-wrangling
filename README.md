@@ -13,7 +13,7 @@ The code in Double-Int.c is never supossed to define the function IntPowerOfDoub
 
 **Output Of Double-Int.c**
 
-rohan@hackerspace:-$ clang-3.5 -lm Double-Int.c
+rohan@hackerspace:-$ clang-3.5 -lm Double-Int.c  
 rohan@hackerspace:-$ ./a.out  
 (0.99)^100: 0.366032  
 (0.99)^100: 0.366032  
