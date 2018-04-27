@@ -140,4 +140,4 @@ $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000
 ────────────────────────────────────────────────────────────────────────────────  
 
 ```
-Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. 
+Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" is passed to ```xmm0``` beacuse its a scalar double preciosion number and "100" is passed to ```edi```.
