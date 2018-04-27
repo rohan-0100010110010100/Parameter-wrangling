@@ -68,7 +68,7 @@ double  DoubleToTheInt(double base, int power) {
     return pow(base, power);  
 }  
 ```
-Now beacuse we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function which can be identified by this line ``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order, which is:
+Now because we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function which can be identified by this line ``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order, which is:
 
 
 ```
@@ -158,7 +158,7 @@ In case of Linux the program works like this:
 * Floating-point arguments are placed, in order, into SSE registers, labeled XMM0, XMM1, etc.
 * Integer and pointer arguments are placed, in order, into general registers, labeled RDX, RCX, etc.
 
-Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` beacuse its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
+Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` because its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
 
 Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below: 
 
