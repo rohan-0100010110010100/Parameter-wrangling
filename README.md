@@ -162,13 +162,13 @@ Now from above this is clear that the arguments of the function are in ```xmm0``
 
 Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below:
 
-Contents of SSE registers before the parameter enters function: 
+Contents of SSE registers before the parameter enters both functions: 
 
 |  XMM0 |  XMM1|   YMM0|YMM1|
 |---|---|---|---|
 |  0.99 | N/A  |  N/A | N/A|
 
-Content of source index & destination index register before the parameter enters to function:
+Content of source index & destination index register before the parameter enters both functions:
 
 |  RDI | RSI |
 |---|---|
