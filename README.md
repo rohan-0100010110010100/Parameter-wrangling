@@ -153,7 +153,7 @@ Now from above this is clear that the arguments of the function are in ```xmm0``
 Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering.
 
 
-|  XMM0 |  XMM1|   YMM0|
-|---|---|---|
-|  0.99 | N/A  |  N/A |
+|  XMM0 |  XMM1|   YMM0|YMM1|
+|---|---|---|---|
+|  0.99 | N/A  |  N/A | N/A|
 
