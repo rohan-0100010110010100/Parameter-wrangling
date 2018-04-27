@@ -78,6 +78,7 @@ Now beacuse we have defined function which has reordered the argument of ```Doub
 Now we have to see that how these modified arguments get into the registers as per AMD64 ABI:
 
 Now examine the critical sections about registers invovled with functions:  
+
 ```0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778```    --> Original Order ( DoubleToInt (double,int) )  
 ```0x00000000004006bf <+63>:	movsd  xmm0,QWORD PTR ds:0x400778 ```   --> Modified Order ( IntPowerOfDouble (int, double))  
 ```0x0000000000400691 <+17>:	mov    edi,0x64  ``` --> Original Order ( DoubleToInt (double,int) )   
@@ -96,7 +97,7 @@ gef➤  r
 Starting program: /home/rohan/a.out     
 Breakpoint 1, 0x00000000004006a4 in main ()  
 
-───────────────────────────────────────────────────────────────[ registers ]────  
+──────────────────────────────────────────────────────[ registers ]────  
 $rax   : 0x0000000000400650  →  <DoubleToTheInt+0> push rbp  
 $rbx   : 0x0000000000000000  
 $rcx   : 0x0000000000000000  
@@ -116,31 +117,37 @@ $r14   : 0x0000000000000000
 $r15   : 0x0000000000000000  
 $eflags: [carry PARITY adjust zero sign trap INTERRUPT direction overflow resume virtualx86 identification]  
 $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000    
-───────────────────────────────────────────────────────────────────[ stack ]────  
-0x00007fffffffdc60│+0x00: 0x00007fffffffdd50  →  0x0000000000000001	 ← $rsp  
-0x00007fffffffdc68│+0x08: 0x0000000000400650  →  <DoubleToTheInt+0> push rbp  
-0x00007fffffffdc70│+0x10: 0x0000000000000000	 ← $rbp  
-0x00007fffffffdc78│+0x18: 0x00007ffff772cf45  →  <__libc_start_main+245> mov edi, eax  
-0x00007fffffffdc80│+0x20: 0x0000000000000000  
-0x00007fffffffdc88│+0x28: 0x00007fffffffdd58  →  0x00007fffffffe125  →  "/home/rohan/a.out"  
-0x00007fffffffdc90│+0x30: 0x0000000100000000  
-0x00007fffffffdc98│+0x38: 0x0000000000400680  →  <main+0> push rbp  
-────────────────────────────────────────────────────────[ code:i386:x86-64 ]────  
-     0x40068f <main+15>        add    BYTE PTR [rdi+0x64], dil  
-     0x400696 <main+22>        movabs rax, 0x400650  
-     0x4006a0 <main+32>        mov    QWORD PTR [rbp-0x8], rax  
- →   0x4006a4 <main+36>        call   0x400650 <DoubleToTheInt>  
-   ↳    0x400650 <DoubleToTheInt+0> push   rbp  
-        0x400651 <DoubleToTheInt+1> mov    rbp, rsp  
-        0x400654 <DoubleToTheInt+4> sub    rsp, 0x10  
-        0x400658 <DoubleToTheInt+8> movsd  QWORD PTR [rbp-0x8], xmm0  
-        0x40065d <DoubleToTheInt+13> mov    DWORD PTR [rbp-0xc], edi  
-        0x400660 <DoubleToTheInt+16> movsd  xmm0, QWORD PTR [rbp-0x8]  
-─────────────────────────────────────────────────────────────────[ threads ]────  
-[#0] Id 1, Name: "a.out", stopped, reason: BREAKPOINT  
-───────────────────────────────────────────────────────────────────[ trace ]────  
-[#0] 0x4006a4 → Name: main()  
-────────────────────────────────────────────────────────────────────────────────  
+```
+Also we set another break point at ``0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8] ```
+```
+gef➤  b *0x00000000004006cb
+Breakpoint 3 at 0x4006cb
+gef➤  c
+Continuing.
+(0.99)^100: 0.366032 
+
+Breakpoint 3, 0x00000000004006cb in main ()
+
+──────────────────────────────────────────────────[ registers ]────
+$rax   : 0x0000000000000016
+$rbx   : 0x0000000000000000
+$rcx   : 0x0000000000000014
+$rdx   : 0x00007ffff7acf9e0  →  0x0000000000000000
+$rsp   : 0x00007fffffffdc60  →  0x00000016ffffdd50
+$rbp   : 0x00007fffffffdc70  →  0x0000000000000000
+$rsi   : 0x000000007fffffeb
+$rdi   : 0x0000000000000064
+$rip   : 0x00000000004006cb  →  <main+75> call QWORD PTR [rbp-0x8]
+$r8    : 0x0000000000000008
+$r9    : 0x0000000000000008
+$r10   : 0x00007ffff7acc6a0  →  0x0000000000000000
+$r11   : 0x0000000000000246
+$r12   : 0x0000000000400550  →  <_start+0> xor ebp, ebp
+$r13   : 0x00007fffffffdd50  →  0x0000000000000001
+$r14   : 0x0000000000000000
+$r15   : 0x0000000000000000
+$eflags: [carry parity adjust zero sign trap INTERRUPT direction overflow resume virtualx86 identification]
+$es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000  
 
 ```
 ## SIMD Analysis:  
