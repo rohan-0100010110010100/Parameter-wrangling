@@ -251,14 +251,15 @@ Now we have to see that how these modified arguments get into the registers as p
 
 Now examine the critical sections about registers invovled with functions:  
 
-```0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400798```    --> Original Order ( DoubleToInt (double,int) )  
+```0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400798```    --> Original Order ( DoubleToFloat (double,int) )  
 ```0x00000000004006d3 <+83>:	movsd  xmm1,QWORD PTR ds:0x400798```   --> Modified Order ( FloatPowerOfDouble (int, double))  
-```0x0000000000400691 <+17>:	movabs rax,0x64``` --> Original Order ( DoubleToInt (double,int) )    
-```0x000000000040069b <+27>:	cvtsi2ss xmm1,rax``` --> Original Order ( DoubleToInt (double,int) )     
+```0x0000000000400691 <+17>:	movabs rax,0x64``` --> Original Order ( DoubleToFloat (double,int) )    
+```0x000000000040069b <+27>:	cvtsi2ss xmm1,rax``` --> Original Order ( DoubleToFloat (double,int) )     
 ```0x00000000004006c4 <+68>:	movabs rdi,0x64```--> Modified Order ( FloatPowerOfDouble (int, double))    
 ```0x00000000004006ce <+78>:	cvtsi2ss xmm0,rdi```--> Modified Order ( FloatPowerOfDouble (int, double))    
 
 
-movsd reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html). cvtsi2ss is used to convert doubleword integer to scalar single-precision floating-point value,details of which is [here](https://docs.oracle.com/cd/E19120-01/open.solaris/817-5477/epmpi/index.html)
+movsd reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).   
+cvtsi2ss is used to convert doubleword integer to scalar single-precision floating-point value,details of which is [here](https://docs.oracle.com/cd/E19120-01/open.solaris/817-5477/epmpi/index.html)  
 
 So from above we can infer that for first case that is Original Order the value 0.99 is in ```xmm0``` and value 100 is in ```xmm1``` and for second case that is Modified order the value 0.99 is in ```xmm1```  and value 100 is in ```xmm0```.
