@@ -160,6 +160,6 @@ Contents of SSE registers before the parameter enters function:
 
 Content of source index & destination index register before the parameter enters to function:
 
-|  EDI | ESI |
+|  RDI | RSI |
 |---|---|
-| 0x64 | N/A |
+| 0x64 or 100 | N/A |
