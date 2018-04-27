@@ -261,4 +261,4 @@ Now examine the critical sections about registers invovled with functions:
 
 MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
 
-So from above we can infer that for first case that is Original Order the value "0.99" is in ```xmm0``` and value "100" is in ```xmm1``` and for second case that is Modified order the value "0.99" is in ```xmm1```  and value "100" is in ```xmm0```.
+So from above we can infer that for first case that is Original Order the value 0.99 is in ```xmm0``` and value 100 is in ```xmm1``` and for second case that is Modified order the value 0.99 is in ```xmm1```  and value 100 is in ```xmm0```.
