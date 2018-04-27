@@ -196,3 +196,38 @@ Content of source index & destination index register before the parameter enters
 As described above the state of the registers is same in using both functions ,thus output obtained is same.
 
 ## Exploring Double-Float.c
+
+ Disassembly on the main: 
+ 
+ ```
+ gef➤  disas main  
+Dump of assembler code for function main:  
+   0x0000000000400680 <+0>:	push   rbp  
+   0x0000000000400681 <+1>:	mov    rbp,rsp  
+   0x0000000000400684 <+4>:	sub    rsp,0x10  
+   0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400798  
+   0x0000000000400691 <+17>:	movabs rax,0x64  
+   0x000000000040069b <+27>:	cvtsi2ss xmm1,rax  
+   0x00000000004006a0 <+32>:	movabs rax,0x400650  
+   0x00000000004006aa <+42>:	mov    QWORD PTR [rbp-0x8],rax  
+   0x00000000004006ae <+46>:	call   0x400650 <DoubleToTheFloat>  
+   0x00000000004006b3 <+51>:	movabs rdi,0x4007a0  
+   0x00000000004006bd <+61>:	mov    al,0x1  
+   0x00000000004006bf <+63>:	call   0x400510 <printf@plt>  
+   0x00000000004006c4 <+68>:	movabs rdi,0x64  
+   0x00000000004006ce <+78>:	cvtsi2ss xmm0,rdi  
+   0x00000000004006d3 <+83>:	movsd  xmm1,QWORD PTR ds:0x400798  
+   0x00000000004006dc <+92>:	mov    DWORD PTR [rbp-0xc],eax  
+   0x00000000004006df <+95>:	call   QWORD PTR [rbp-0x8]  
+   0x00000000004006e2 <+98>:	movabs rdi,0x4007a0  
+   0x00000000004006ec <+108>:	mov    al,0x1  
+   0x00000000004006ee <+110>:	call   0x400510 <printf@plt>  
+   0x00000000004006f3 <+115>:	mov    ecx,0x0  
+   0x00000000004006f8 <+120>:	mov    DWORD PTR [rbp-0x10],eax  
+   0x00000000004006fb <+123>:	mov    eax,ecx  
+   0x00000000004006fd <+125>:	add    rsp,0x10  
+   0x0000000000400701 <+129>:	pop    rbp  
+   0x0000000000400702 <+130>:	ret      
+End of assembler dump.  
+```
+
