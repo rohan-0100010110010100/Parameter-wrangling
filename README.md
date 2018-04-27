@@ -14,24 +14,24 @@ The result of this experiment is based upon the Platform ABI and artchitecture ,
 The code in Double-Int.c is never supossed to define the function IntPowerOfDouble — because there is no function IntPowerOfDouble in reality. It's a function pointer that points to DoubleToTheInt, but with parameters that infer that it requires its integer arguments to come before its double argument.
 
 **Output Of Double-Int.c**
-
+```
 rohan@hackerspace:-$ clang-3.5 -lm Double-Int.c  
 rohan@hackerspace:-$ ./a.out  
 (0.99)^100: 0.366032  
 (0.99)^100: 0.366032  
-
+```
 
 Now try changing all the int arguments to float — you'll see that FloatPowerOfDouble does something even stranger. That is,
 
 **Output Of Double-Float.c**
-
+```
 rohan@hackerspace:-$ clang-3.5 -lm Double-Float.c  
 rohan@hackerspace:-$ ./a.out  
 (0.99)^100: 0.366032  
 (0.99)^100: 0.000000  
-
+```
 Now I'm using gef or GDB Enhanced Features for debugging the Double-Int.c, so I did  disassembly on the main:  
-
+```
 gef➤  disas main  
 Dump of assembler code for function main:  
    0x0000000000400680 <+0>:	push   rbp  
@@ -59,4 +59,14 @@ Dump of assembler code for function main:
    0x00000000004006ed <+109>:	pop    rbp  
    0x00000000004006ee <+110>:	ret      
 End of assembler dump.  
+```
+The function which has been called by main routine can be identified by this line:    
+``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```
+
+```
+
+double  DoubleToTheInt(double base, int power) {  
+    return pow(base, power);  
+}  
+```
 
