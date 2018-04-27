@@ -76,4 +76,11 @@ Now beacuse we have defined function which has reordered the argument of ```Doub
 ```
 Now we have to see that how these modified arguments get into the registers as per AMD64 ABI:
 
-
+Now examine the critical sections about registers invovled with functions:  
+```
+0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778  
+```
+```
+gef➤  x 0x400778  
+0x400778:	0x7ae147ae  
+```
