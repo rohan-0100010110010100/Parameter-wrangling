@@ -142,3 +142,5 @@ $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000
 ```
 ## SIMD Analysis:  
 Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` beacuse its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
+
+Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering.
