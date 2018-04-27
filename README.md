@@ -162,6 +162,7 @@ Now from above this is clear that the arguments of the function are in ```xmm0``
 
 Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below: 
 
+Getting the SSE info form GEF, so our value for ```xmm0``` is ```v2_double``` in both cases. 
 ``` 
 gef➤  p $xmm0
 $1 = {
@@ -187,4 +188,6 @@ Content of source index & destination index register before the parameter enters
 |---|---|
 | 0x64 or 100 | N/A |
 
-As described above the state of the registers is same in using the function 
+As described above the state of the registers is same in using both functions ,thus output obtained is same.
+
+
