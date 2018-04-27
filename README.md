@@ -84,7 +84,7 @@ Now examine the critical sections about registers invovled with functions:
 ```0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778```    --> Original Order ( DoubleToInt (double,int) )  
 ```0x00000000004006bf <+63>:	movsd  xmm0,QWORD PTR ds:0x400778 ```   --> Modified Order ( IntPowerOfDouble (int, double))  
 ```0x0000000000400691 <+17>:	mov    edi,0x64  ``` --> Original Order ( DoubleToInt (double,int) )   
-```0x00000000004006ba <+58>:	mov    edi,0x64  ``` --> Modiifed Order ( IntPowerOfDouble (int, double))  
+```0x00000000004006ba <+58>:	mov    edi,0x64  ``` --> Modified Order ( IntPowerOfDouble (int, double))  
 
 MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
 Now from the above it is clear that ```xmm0``` and ```edi``` contains same value no matter what function get called.
@@ -255,10 +255,9 @@ Now examine the critical sections about registers invovled with functions:
 ```0x00000000004006d3 <+83>:	movsd  xmm1,QWORD PTR ds:0x400798```   --> Modified Order ( IntPowerOfDouble (int, double))  
 ```0x0000000000400691 <+17>:	movabs rax,0x64``` --> Original Order ( DoubleToInt (double,int) )    
 ```0x000000000040069b <+27>:	cvtsi2ss xmm1,rax``` --> Original Order ( DoubleToInt (double,int) )     
-```0x00000000004006c4 <+68>:	movabs rdi,0x64```--> Modiifed Order ( IntPowerOfDouble (int, double))    
-```0x00000000004006ce <+78>:	cvtsi2ss xmm0,rdi```--> Modiifed Order ( IntPowerOfDouble (int, double))    
+```0x00000000004006c4 <+68>:	movabs rdi,0x64```--> Modified Order ( IntPowerOfDouble (int, double))    
+```0x00000000004006ce <+78>:	cvtsi2ss xmm0,rdi```--> Modified Order ( IntPowerOfDouble (int, double))    
 
 
 MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
-Now from the above it is clear that ```xmm0``` and ```edi``` contains same value no matter what function get called.
-So we extract the value of ```xmm0``` register.
+
