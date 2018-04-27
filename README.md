@@ -286,6 +286,6 @@ Also note that pow function  is defined as : ```double pow(double x, double y)``
 
 So in first case we are calculating Output = pow(xmm0,xmm1) = (0.99)^100 = 0.366032 with ```xmm0``` being double precision floating point number and ```xmm1``` being single precision floating point number.
 
-But in second case as a side-efect of argument reordering, the DoubleToFloat expects a double precision number in ```xmm0``` and single precision number in ```xmm1```., but in second case opposite is true. Thus a single precision number 0.99 or ```xmm1```  is raised to a double precision number 100 or ```xmm0```.
+But in second case as a side-efect of argument reordering, the DoubleToFloat expects a double precision number in ```xmm0``` and single precision number in ```xmm1```., but in second case opposite is true. Thus a single precision number 0.99 (32 bit) or ```xmm1```  is raised to a double precision number 100(64 bit) or ```xmm0```.
 
-A very small value(less than 1) (0.99) is raised to very large value(100) thus result is very very small value or  0.00000.
+A very small value(less than 1=0.99, 32 bit) is raised to very large value(100, 64 bit) thus result is very very small value or  0.00000.
