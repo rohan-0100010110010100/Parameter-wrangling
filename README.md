@@ -142,7 +142,7 @@ $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000
 ```
 ## SIMD Analysis:  
 
-In 64 bit mode parameter are transferred in register RAX, RCX, RDX, R8, R9 in case of integer arguments
+In 64 bit mode, fisrt 4 parameter are transferred in register RAX, RCX, RDX, R8, R9 in case of integer arguments
 
 In case of Linux the program works like this:
 * Floating-point arguments are placed, in order, into SSE registers, labeled XMM0, XMM1, etc.
@@ -152,8 +152,14 @@ Now from above this is clear that the arguments of the function are in ```xmm0``
 
 Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering.
 
+Contents of SSE registers: 
 
 |  XMM0 |  XMM1|   YMM0|YMM1|
 |---|---|---|---|
 |  0.99 | N/A  |  N/A | N/A|
 
+Content of source index & destination index register:
+
+|  EDI | ESI |
+|---|---|
+| 0x400780 | 0x000143 |
