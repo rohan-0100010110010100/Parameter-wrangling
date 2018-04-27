@@ -152,7 +152,7 @@ $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000
 ```
 ## SIMD Analysis:  
 
-In 64 bit mode, fisrt 4 parameter are transferred in register RAX, RCX, RDX, R8, R9 in case of integer arguments
+In 64 bit mode, fisrt 4 parameter are transferred in register RAX, RCX, RDX, R8, R9 in case of integer arguments and rest of parameters go into RDI and RSI , so a total of six registers.
 
 In case of Linux the program works like this:
 * Floating-point arguments are placed, in order, into SSE registers, labeled XMM0, XMM1, etc.
