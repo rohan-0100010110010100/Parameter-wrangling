@@ -60,8 +60,9 @@ Dump of assembler code for function main:
    0x00000000004006ee <+110>:	ret      
 End of assembler dump.  
 ```
-The function which has been called by main routine can be identified by this line:    
-``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```
+The function which has been called by main routine in  cases modified order & original order can be identified by this line:    
+``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```   --> Original Order
+``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order
 which is:
 ```
 double  DoubleToTheInt(double base, int power) {  
@@ -77,9 +78,11 @@ Now beacuse we have defined function which has reordered the argument of ```Doub
 Now we have to see that how these modified arguments get into the registers as per AMD64 ABI:
 
 Now examine the critical sections about registers invovled with functions:  
-```
-0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778  
-```
+```0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778```    --> Original Order ( DoubleToInt (double,int) )  
+```0x00000000004006bf <+63>:	movsd  xmm0,QWORD PTR ds:0x400778 ```   --> Modified Order ( IntPowerOfDouble (int, double))  
+```0x0000000000400691 <+17>:	mov    edi,0x64  ``` --> Original Order ( DoubleToInt (double,int) )   
+```0x00000000004006ba <+58>:	mov    edi,0x64  ``` --> Modiifed Order ( IntPowerOfDouble (int, double))  
+
 MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
 ```
 gef➤  x 0x400778  
@@ -150,7 +153,7 @@ In case of Linux the program works like this:
 
 Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` beacuse its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
 
-Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below:
+Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below:
 
 Contents of SSE registers before the parameter enters function: 
 
@@ -163,3 +166,5 @@ Content of source index & destination index register before the parameter enters
 |  RDI | RSI |
 |---|---|
 | 0x64 or 100 | N/A |
+
+As described above the state of the registers is same in using the function 
