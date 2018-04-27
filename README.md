@@ -141,7 +141,10 @@ $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000
 
 ```
 ## SIMD Analysis:  
-But in both Windows and Unix, the basic algorithm works like this:
+
+In 64 bit mode parameter are transferred in register RAX, RCX, RDX, R8, R9 in case of integer arguments
+
+In this case Linux the program works like this:
 * Floating-point arguments are placed, in order, into SSE registers, labeled XMM0, XMM1, etc.
 * Integer and pointer arguments are placed, in order, into general registers, labeled RDX, RCX, etc.
 
