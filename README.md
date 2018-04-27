@@ -259,6 +259,6 @@ Now examine the critical sections about registers invovled with functions:
 ```0x00000000004006ce <+78>:	cvtsi2ss xmm0,rdi```--> Modified Order ( FloatPowerOfDouble (int, double))    
 
 
-MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html). CVTSI2SS is used to convert doubleword integer to scalar single-precision floating-point value,details of which is [here](https://docs.oracle.com/cd/E19120-01/open.solaris/817-5477/epmpi/index.html)
+movsd reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html). cvtsi2ss is used to convert doubleword integer to scalar single-precision floating-point value,details of which is [here](https://docs.oracle.com/cd/E19120-01/open.solaris/817-5477/epmpi/index.html)
 
 So from above we can infer that for first case that is Original Order the value 0.99 is in ```xmm0``` and value 100 is in ```xmm1``` and for second case that is Modified order the value 0.99 is in ```xmm1```  and value 100 is in ```xmm0```.
