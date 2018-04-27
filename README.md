@@ -160,7 +160,19 @@ In case of Linux the program works like this:
 
 Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` beacuse its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
 
-Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below:
+Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below: 
+
+``` gef➤  p $xmm0
+$1 = {
+  v4_float = {5.84860315e+35, 1.87249994, 0, 0}, 
+  **v2_double = {0.98999999999999999, 0}**, 
+  v16_int8 = {0xae, 0x47, 0xe1, 0x7a, 0x14, 0xae, 0xef, 0x3f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, 
+  v8_int16 = {0x47ae, 0x7ae1, 0xae14, 0x3fef, 0x0, 0x0, 0x0, 0x0}, 
+  v4_int32 = {0x7ae147ae, 0x3fefae14, 0x0, 0x0}, 
+  v2_int64 = {0x3fefae147ae147ae, 0x0}, 
+  uint128 = 0x00000000000000003fefae147ae147ae
+}
+```
 
 Contents of SSE registers before the parameter enters both functions: 
 
