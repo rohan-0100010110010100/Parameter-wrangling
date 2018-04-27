@@ -162,7 +162,8 @@ Now from above this is clear that the arguments of the function are in ```xmm0``
 
 Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below: 
 
-``` gef➤  p $xmm0
+``` 
+gef➤  p $xmm0
 $1 = {
   v4_float = {5.84860315e+35, 1.87249994, 0, 0}, 
   v2_double = {0.98999999999999999, 0}, 
