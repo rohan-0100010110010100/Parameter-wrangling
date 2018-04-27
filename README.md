@@ -152,7 +152,7 @@ $eflags: [carry parity adjust zero sign trap INTERRUPT direction overflow resume
 $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000  
 
 ```
-## SIMD Analysis:  
+## SIMD Analysis of Double-int.c:  
 
 In 64 bit mode, fisrt 4 parameter are transferred in register RAX, RCX, RDX, R8, R9 in case of integer arguments and rest of parameters go into RDI and RSI , so a total of six registers.
 
