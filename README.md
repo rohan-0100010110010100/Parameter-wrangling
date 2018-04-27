@@ -68,7 +68,7 @@ double  DoubleToTheInt(double base, int power) {
     return pow(base, power);  
 }  
 ```
-Now beacuse we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function or ``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order which is:
+Now beacuse we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function which can be identified by this line ``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order, which is:
 
 
 ```
