@@ -235,7 +235,7 @@ End of assembler dump.
 The function which has been called by main routine in case of original order can be identified by this line:      
 ```    0x00000000004006ae <+46>:	call   0x400650 <DoubleToTheFloat>```   --> Original Order of arguments which is:
 ```
-double  DoubleToTheInt(double base, int power) {  
+double  DoubleToTheFloat(double base, float power) {  
     return pow(base, power);  
 }  
 ```
@@ -261,3 +261,4 @@ Now examine the critical sections about registers invovled with functions:
 
 MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
 
+So from above we can infer that for first case that is Original Order the value "0.99" is in ```xmm0``` and value "100" is in ```xmm1``` and for second case that is Modified order the value "0.99" is in ```xmm1```  and value "100" is in ```xmm0```.
