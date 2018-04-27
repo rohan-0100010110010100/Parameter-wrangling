@@ -118,7 +118,7 @@ $r15   : 0x0000000000000000
 $eflags: [carry PARITY adjust zero sign trap INTERRUPT direction overflow resume virtualx86 identification]  
 $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000    
 ```
-Also we set another break point at ``0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8] ```
+Also we set another break point at ```0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8] ```
 ```
 gef➤  b *0x00000000004006cb
 Breakpoint 3 at 0x4006cb
