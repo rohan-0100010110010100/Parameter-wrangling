@@ -61,15 +61,15 @@ Dump of assembler code for function main:
 End of assembler dump.  
 ```
 The function which has been called by main routine in  cases modified order & original order can be identified by this line:      
-``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```   --> Original Order  
-``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order  
+``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```   --> Original Order   
 which is:
 ```
 double  DoubleToTheInt(double base, int power) {  
     return pow(base, power);  
 }  
 ```
-Now beacuse we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function:
+Now beacuse we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function or ``` 0x00000000004006cb <+75>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order which is:
+
 
 ```
  double (*IntPowerOfDouble)(int, double) =
