@@ -30,6 +30,9 @@ rohan@hackerspace:-$ ./a.out
 (0.99)^100: 0.366032  
 (0.99)^100: 0.000000  
 ```
+
+**Exploring Double-Int.c**
+
 Now I'm using gef or GDB Enhanced Features for debugging the Double-Int.c, so I did  disassembly on the main:  
 ```
 gef➤  disas main  
