@@ -196,6 +196,8 @@ Content of source index & destination index register before the parameter enters
 As described above the state of the registers is same in using both functions ,thus output obtained is same.
 
 ## Exploring Double-Float.c
+  
+ We have seen that FloatPowerOfDouble does something even stranger. Now we should investigate further.  
 
  Disassembly on the main: 
  
