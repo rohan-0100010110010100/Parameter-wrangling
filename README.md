@@ -31,7 +31,7 @@ rohan@hackerspace:-$ ./a.out
 (0.99)^100: 0.000000  
 ```
 
-**Exploring Double-Int.c**
+## Exploring Double-Int.c
 
 Now I'm using gef or GDB Enhanced Features for debugging the Double-Int.c, so I did  disassembly on the main:  
 ```
@@ -195,4 +195,4 @@ Content of source index & destination index register before the parameter enters
 
 As described above the state of the registers is same in using both functions ,thus output obtained is same.
 
-
+## Exploring Double-Float.c
