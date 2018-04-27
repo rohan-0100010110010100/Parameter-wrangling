@@ -150,16 +150,16 @@ In case of Linux the program works like this:
 
 Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` beacuse its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
 
-Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering.
+Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering. The elaborated explaination is given below:
 
-Contents of SSE registers: 
+Contents of SSE registers efore the parameter are passed to function: 
 
 |  XMM0 |  XMM1|   YMM0|YMM1|
 |---|---|---|---|
 |  0.99 | N/A  |  N/A | N/A|
 
-Content of source index & destination index register:
+Content of source index & destination index register before the parameter are passed to function:
 
 |  EDI | ESI |
 |---|---|
-| 0x400780 | 0x000143 |
+| 0x64 | N/A |
