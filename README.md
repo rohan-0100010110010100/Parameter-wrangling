@@ -80,8 +80,8 @@ Now examine the critical sections about registers invovled with functions:
 ```
 0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778  
 ```
-MOVSD is instruction whos details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
+MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
 ```
 gef➤  x 0x400778  
-0x400778:	0x7ae147ae  
+0x400778: 0x7ae147ae  
 ```
