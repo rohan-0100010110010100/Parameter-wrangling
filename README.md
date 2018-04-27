@@ -160,7 +160,7 @@ In case of Linux the program works like this:
 
 Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` because its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
 
-Even after we reorder the argument for the function DoubleToInt, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below: 
+Even after reordering the arguments for the function ```DoubleToInt(double,int)```, we exactly got the same result as we would have got without reordering. The elaborated explaination can be inferred from below: 
 
 Getting the SSE information from GEF, so our value for ```xmm0``` is ```v2_double``` in both cases. 
 ``` 
