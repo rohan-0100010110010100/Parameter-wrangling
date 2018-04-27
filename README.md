@@ -63,7 +63,7 @@ Dump of assembler code for function main:
    0x00000000004006ee <+110>:	ret      
 End of assembler dump.  
 ```
-The function which has been called by main routine in  cases modified order & original order can be identified by this line:      
+The function which has been called by main routine in  case of original order can be identified by this line:      
 ``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```   --> Original Order of arguments which is:
 ```
 double  DoubleToTheInt(double base, int power) {  
@@ -232,4 +232,30 @@ Dump of assembler code for function main:
    0x0000000000400702 <+130>:	ret      
 End of assembler dump.  
 ```
+The function which has been called by main routine in case of original order can be identified by this line:      
+```    0x00000000004006ae <+46>:	call   0x400650 <DoubleToTheFloat>```   --> Original Order of arguments which is:
+```
+double  DoubleToTheInt(double base, int power) {  
+    return pow(base, power);  
+}  
+```
+Now because we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function which can be identified by this line ```    0x00000000004006df <+95>:	call   QWORD PTR [rbp-0x8]```   --> Modified Order of arguments , which is:
 
+
+```
+double (*FloatPowerOfDouble)(float, double) =
+        (double (*)(float, double))&DoubleToTheFloat;
+
+```
+Now we have to see that how these modified arguments get into the registers as per AMD64 ABI:
+
+Now examine the critical sections about registers invovled with functions:  
+
+```0x0000000000400688 <+8>:	movsd  xmm0,QWORD PTR ds:0x400778```    --> Original Order ( DoubleToInt (double,int) )  
+```0x00000000004006bf <+63>:	movsd  xmm0,QWORD PTR ds:0x400778 ```   --> Modified Order ( IntPowerOfDouble (int, double))  
+```0x0000000000400691 <+17>:	mov    edi,0x64  ``` --> Original Order ( DoubleToInt (double,int) )   
+```0x00000000004006ba <+58>:	mov    edi,0x64  ``` --> Modiifed Order ( IntPowerOfDouble (int, double))  
+
+MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
+Now from the above it is clear that ```xmm0``` and ```edi``` contains same value no matter what function get called.
+So we extract the value of ```xmm0``` register.
