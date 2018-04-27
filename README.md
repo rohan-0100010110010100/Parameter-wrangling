@@ -141,6 +141,10 @@ $es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000
 
 ```
 ## SIMD Analysis:  
+But in both Windows and Unix, the basic algorithm works like this:
+* Floating-point arguments are placed, in order, into SSE registers, labeled XMM0, XMM1, etc.
+* Integer and pointer arguments are placed, in order, into general registers, labeled RDX, RCX, etc.
+
 Now from above this is clear that the arguments of the function are in ```xmm0``` and ```edi```. The "0.99" or ```0x7ae147ae ``` is passed to ```xmm0``` beacuse its a scalar double precision number and "100" or ```0x64``` is passed to ```edi```. 
 
 Even after we reorder the argument for the function DoubltToInt we exactly got the same result as we would have got without reordering.
