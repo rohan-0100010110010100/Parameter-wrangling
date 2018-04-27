@@ -85,11 +85,12 @@ Now examine the critical sections about registers invovled with functions:
 
 MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in registers. Details can be found [here](http://www.felixcloutier.com/x86/MOVSD.html).
 Now from the above it is clear that ```xmm0``` and ```edi``` contains same value no matter what function get called.
-So we extract the value of ```xmm0``` register, and also the proof of above deduction can be seen futher.
+So we extract the value of ```xmm0``` register.
 ```
 gef➤  x 0x400778  
 0x400778: 0x7ae147ae  
 ```
+The proof of above deduction can be seen futher:  
 Now we set the breakpoint at ``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ``` --> Original Order of arguments  
 ```
 gef➤  b *0x00000000004006a4  
