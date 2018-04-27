@@ -62,11 +62,18 @@ End of assembler dump.
 ```
 The function which has been called by main routine can be identified by this line:    
 ``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```
-
+which is:
 ```
-
 double  DoubleToTheInt(double base, int power) {  
     return pow(base, power);  
 }  
 ```
+Now beacuse we have defined function which has reordered the argument of ```DoubleToInt(double,int)``` which is defined as pointer to ```DoubleToInt(double,int)``` function:
+
+```
+ double (*IntPowerOfDouble)(int, double) =
+        (double (*)(int, double))&DoubleToTheInt;
+```
+Now we have to see that how these modified arguments get into the registers as per AMD64 ABI:
+
 
