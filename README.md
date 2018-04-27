@@ -85,3 +85,58 @@ MOVSD reprsents moving the  Scalar Double-Precision floating-Point Value in regi
 gef➤  x 0x400778  
 0x400778: 0x7ae147ae  
 ```
+Now we set the breakpoint at ``` 0x00000000004006a4 <+36>: call   0x400650 <DoubleToTheInt> ```
+```
+gef➤  b *0x00000000004006a4  
+Breakpoint 1 at 0x4006a4  
+gef➤  r  
+Starting program: /home/rohan/a.out     
+Breakpoint 1, 0x00000000004006a4 in main ()  
+
+───────────────────────────────────────────────────────────────[ registers ]────  
+$rax   : 0x0000000000400650  →  <DoubleToTheInt+0> push rbp  
+$rbx   : 0x0000000000000000  
+$rcx   : 0x0000000000000000  
+$rdx   : 0x00007fffffffdd68  →  0x00007fffffffe137  →  "LC_PAPER=en_IN"  
+$rsp   : 0x00007fffffffdc60  →  0x00007fffffffdd50  →  0x0000000000000001  
+$rbp   : 0x00007fffffffdc70  →  0x0000000000000000  
+$rsi   : 0x00007fffffffdd58  →  0x00007fffffffe125  →  "/home/rohan/a.out"  
+$rdi   : 0x0000000000000064  
+$rip   : 0x00000000004006a4  →  <main+36> call 0x400650 <DoubleToTheInt>  
+$r8    : 0x00007ffff7acee80  →  0x0000000000000000  
+$r9    : 0x00007ffff7dea600  →  <_dl_fini+0> push rbp  
+$r10   : 0x00007fffffffdb00  →  0x0000000000000000  
+$r11   : 0x00007ffff772ce50  →  <__libc_start_main+0> push r14  
+$r12   : 0x0000000000400550  →  <_start+0> xor ebp, ebp  
+$r13   : 0x00007fffffffdd50  →  0x0000000000000001  
+$r14   : 0x0000000000000000  
+$r15   : 0x0000000000000000  
+$eflags: [carry PARITY adjust zero sign trap INTERRUPT direction overflow resume virtualx86 identification]  
+$es: 0x0000  $cs: 0x0033  $ss: 0x002b  $fs: 0x0000  $gs: 0x0000  $ds: 0x0000    
+───────────────────────────────────────────────────────────────────[ stack ]────  
+0x00007fffffffdc60│+0x00: 0x00007fffffffdd50  →  0x0000000000000001	 ← $rsp  
+0x00007fffffffdc68│+0x08: 0x0000000000400650  →  <DoubleToTheInt+0> push rbp  
+0x00007fffffffdc70│+0x10: 0x0000000000000000	 ← $rbp  
+0x00007fffffffdc78│+0x18: 0x00007ffff772cf45  →  <__libc_start_main+245> mov edi, eax  
+0x00007fffffffdc80│+0x20: 0x0000000000000000  
+0x00007fffffffdc88│+0x28: 0x00007fffffffdd58  →  0x00007fffffffe125  →  "/home/rohan/a.out"  
+0x00007fffffffdc90│+0x30: 0x0000000100000000  
+0x00007fffffffdc98│+0x38: 0x0000000000400680  →  <main+0> push rbp  
+────────────────────────────────────────────────────────[ code:i386:x86-64 ]────  
+     0x40068f <main+15>        add    BYTE PTR [rdi+0x64], dil  
+     0x400696 <main+22>        movabs rax, 0x400650  
+     0x4006a0 <main+32>        mov    QWORD PTR [rbp-0x8], rax  
+ →   0x4006a4 <main+36>        call   0x400650 <DoubleToTheInt>  
+   ↳    0x400650 <DoubleToTheInt+0> push   rbp  
+        0x400651 <DoubleToTheInt+1> mov    rbp, rsp  
+        0x400654 <DoubleToTheInt+4> sub    rsp, 0x10  
+        0x400658 <DoubleToTheInt+8> movsd  QWORD PTR [rbp-0x8], xmm0  
+        0x40065d <DoubleToTheInt+13> mov    DWORD PTR [rbp-0xc], edi  
+        0x400660 <DoubleToTheInt+16> movsd  xmm0, QWORD PTR [rbp-0x8]  
+─────────────────────────────────────────────────────────────────[ threads ]────  
+[#0] Id 1, Name: "a.out", stopped, reason: BREAKPOINT  
+───────────────────────────────────────────────────────────────────[ trace ]────  
+[#0] 0x4006a4 → Name: main()  
+────────────────────────────────────────────────────────────────────────────────  
+
+```
