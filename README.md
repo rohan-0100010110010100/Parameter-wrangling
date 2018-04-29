@@ -282,6 +282,8 @@ Dump of assembler code for function DoubleToTheFloat:
 End of assembler dump.
 ````
 
+Note that ```movss  DWORD PTR [rbp-0xc],xmm1, movsd  xmm0,QWORD PTR [rbp-0x8]``` represents that ```xmm1``` is required to be a single precision floating point number and ```xmm1``` is required to be double precision floating point number.  
+
 Also note that pow function  is defined as : ```double pow(double x, double y)```
 
 So in first case we are calculating Output = pow(xmm0,xmm1) = (0.99)^100 = 0.366032 with ```xmm0``` being double precision floating point number and ```xmm1``` being single precision floating point number.
